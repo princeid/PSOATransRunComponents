@@ -1,0 +1,13 @@
+Document (
+		Prefix(func: <http://www.w3.org/2007/rif-builtin-function#>)
+		Prefix(pred: <http://www.w3.org/2007/rif-builtin-predicate#>)
+  Group (
+	Forall ?x ?y ?z (
+		_remainder(?x ?y ?z):-
+		%And(External(pred:numeric-greater-than(?x ?y))
+        ?z=External(func:numeric-mod(?x ?y))
+    )
+	_remainder(10 5 0)
+  )
+  )
+  )
