@@ -1,0 +1,37 @@
+RuleML (
+  Prefix(pred: <http://www.w3.org/2007/rif-builtin-predicate#>)
+  Assert (
+    Forall ?x ?y ?z (
+      _largest(?x ?y ?z ?x) :-
+        And(
+		  External(pred:numeric-greater-than-or-equal(?x ?y))
+		  External(pred:numeric-greater-than-or-equal(?x ?z))
+		)
+    )
+    Forall ?x ?y ?z (
+      _largest(?x ?y ?z ?y) :-
+        And(
+		  External(pred:numeric-greater-than-or-equal(?y ?x))
+		  External(pred:numeric-greater-than-or-equal(?y ?z))
+		)
+    )
+    Forall ?x ?y ?z (
+      _largest(?x ?y ?z ?z) :-
+        And(
+		  External(pred:numeric-greater-than-or-equal(?z ?x))
+		  External(pred:numeric-greater-than-or-equal(?z ?y))
+		)
+    )
+    Forall ?r1 ?r2 ?r3 (
+      _largest-test(?r1 ?r2 ?r3) :-
+        And(
+          _largest(10 2 3 10)
+          _largest(10 2 3 ?r1)
+          _largest(10 25 3 25)
+          _largest(10 25 3 ?r2)
+          _largest(4 2 70 70)
+          _largest(4 2 70 ?r3)
+		)
+    )
+  )
+)
